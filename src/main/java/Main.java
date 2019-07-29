@@ -47,5 +47,6 @@ public class Main {
             command = in.nextLine();
             pieces = command.split(" ");
         }
+        System.out.println("Bye");
     }
 }
