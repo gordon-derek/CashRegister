@@ -7,10 +7,10 @@ public class Main {
         System.out.println("ready");
         Scanner in = new Scanner(System.in);
         String command = in.nextLine();
+        String[] pieces = command.split(" ");
         while(!command.contains("quit")) {
             try {
-                if (command.contains("put")) {
-                    String[] pieces = command.split(" ");
+                if ("put".equals(pieces[0])) {
                     register.SaveState();
                     register.AddTwenties(Integer.parseInt(pieces[1]));
                     register.AddTens(Integer.parseInt(pieces[2]));
@@ -18,8 +18,7 @@ public class Main {
                     register.AddTwos(Integer.parseInt(pieces[4]));
                     register.AddOnes(Integer.parseInt(pieces[5]));
                     System.out.println(register.toString());
-                } else if (command.contains("take")) {
-                    String[] pieces = command.split(" ");
+                } else if ("take".equals(pieces[0])) {
                     register.SaveState();
                     register.TakeTwenties(Integer.parseInt(pieces[1]));
                     register.TakeTens(Integer.parseInt(pieces[2]));
@@ -27,13 +26,13 @@ public class Main {
                     register.TakeTwos(Integer.parseInt(pieces[4]));
                     register.TakeOnes(Integer.parseInt(pieces[5]));
                     System.out.println(register.toString());
-                } else if (command.contains("change")) {
-                    String numToChange = command.split(" ")[1];
+                } else if ("change".equals(pieces[0])) {
+                    String numToChange = pieces[1];
                     register.SaveState();
                     System.out.println(numToChange);
                     String result = register.MakeChange(Integer.parseInt(numToChange));
                     System.out.println(result);
-                } else if (command.contains("show")) {
+                } else if ("show".equals(pieces[0])) {
                     System.out.println(register.toString());
                 } else {
                     System.out.println("Invalid command, please try again");
@@ -46,6 +45,7 @@ public class Main {
                 register.RestoreState();
             }
             command = in.nextLine();
+            pieces = command.split(" ");
         }
     }
 }
