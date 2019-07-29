@@ -20,14 +20,14 @@ public class CashRegister {
     }
 
     //save the current state of the till in case invalid data is sent in
-    void SaveState() {
+    void saveState() {
         previousState = new HashMap<>();
         for(Map.Entry<Integer,Integer> entry : till.entrySet()) {
             previousState.put(entry.getKey(), entry.getValue());
         }
     }
 
-    void RestoreState() {
+    void restoreState() {
         till = new HashMap<>();
         if(previousState != null) {
             for (Map.Entry<Integer, Integer> entry : previousState.entrySet()) {
@@ -102,7 +102,7 @@ public class CashRegister {
     }
 
     //take the dollar amount and try to make change with the bills available
-    String MakeChange(int numToChange) throws Exception {
+    String makeChange(int numToChange) throws Exception {
         HashMap<Integer,Integer> change = new HashMap<>();
         change.put(TWENTY,0);
         change.put(TEN,0);
@@ -114,7 +114,7 @@ public class CashRegister {
         boolean changeMade = rMakeChange(numToChange, change);
 
         if(!changeMade) {
-            Exception();
+            exception();
         }
 
         return change.get(TWENTY) + " " + change.get(TEN) + " " + change.get(FIVE) + " " + change.get(TWO) + " " +
@@ -124,31 +124,31 @@ public class CashRegister {
     /*******************************************************/
     /***** Add Methods: add number sent in to the till  ****/
     /*******************************************************/
-    void AddTwenties(int numToAdd) {
+    void addTwenties(int numToAdd) {
         if(numToAdd > 0) {
             till.put(TWENTY, till.get(TWENTY) + numToAdd);
         }
     }
 
-    void AddTens(int numToAdd) {
+    void addTens(int numToAdd) {
         if(numToAdd > 0) {
             till.put(TEN, till.get(TEN) + numToAdd);
         }
     }
 
-    void AddFives(int numToAdd) {
+    void addFives(int numToAdd) {
         if(numToAdd > 0) {
             till.put(FIVE, till.get(FIVE) + numToAdd);
         }
     }
 
-    void AddTwos(int numToAdd) {
+    void addTwos(int numToAdd) {
         if(numToAdd > 0) {
             till.put(TWO, till.get(TWO) + numToAdd);
         }
     }
 
-    void AddOnes(int numToAdd) {
+    void addOnes(int numToAdd) {
         if(numToAdd > 0) {
             till.put(ONE, till.get(ONE) + numToAdd);
         }
@@ -157,47 +157,47 @@ public class CashRegister {
     /*******************************************************/
     /** Take Methods: remove number sent in from the till **/
     /*******************************************************/
-    void TakeTwenties(int numToTake) throws Exception {
+    void takeTwenties(int numToTake) throws Exception {
         if(numToTake > 0 && numToTake <= till.get(TWENTY)) {
             till.put(TWENTY, till.get(TWENTY) - numToTake);
         } else if(numToTake > 0) {
-            Exception();
+            exception();
         }
     }
 
-    void TakeTens(int numToTake) throws Exception {
+    void takeTens(int numToTake) throws Exception {
         if(numToTake > 0 && numToTake <= till.get(TEN)) {
             till.put(TEN, till.get(TEN) - numToTake);
         } else if(numToTake > 0) {
-            Exception();
+            exception();
         }
     }
 
-    void TakeFives(int numToTake) throws Exception {
+    void takeFives(int numToTake) throws Exception {
         if(numToTake > 0 && numToTake <= till.get(FIVE)) {
             till.put(FIVE, till.get(FIVE) - numToTake);
         } else if(numToTake > 0) {
-            Exception();
+            exception();
         }
     }
 
-    void TakeTwos(int numToTake) throws Exception {
+    void takeTwos(int numToTake) throws Exception {
         if(numToTake > 0 && numToTake <= till.get(TWO)) {
             till.put(TWO, till.get(TWO) - numToTake);
         } else if(numToTake > 0) {
-            Exception();
+            exception();
         }
     }
 
-    void TakeOnes(int numToTake) throws Exception {
+    void takeOnes(int numToTake) throws Exception {
         if(numToTake > 0 && numToTake <= till.get(ONE)) {
             till.put(ONE, till.get(ONE) - numToTake);
         } else if(numToTake > 0) {
-            Exception();
+            exception();
         }
     }
 
-    private void Exception() throws Exception {
+    private void exception() throws Exception {
         throw new Exception("sorry");
     }
 
